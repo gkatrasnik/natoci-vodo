@@ -1,7 +1,15 @@
-.App {
-  text-align: center;
+html {
+  height: 100vh;
 }
 
-.addLocation {
-  right: 20;
+#root {
+  height: 100vh;
+}
+
+body {
+  height: 100vh;
+}
+.App {
+  text-align: center;
+  height: 100vh;
 }
