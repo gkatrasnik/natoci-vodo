@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
   MapComponent: {
     zIndex: 0,
-    height: "90vh",
+    height: "92vh",
     width: "100%",
 
     marginBottom: "50px",
