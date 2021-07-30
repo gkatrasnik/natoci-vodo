@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMapEvents, Marker, Popup } from "react-leaflet";
 
-function LocationMarker() {
+function LocationMarker(props) {
   const [position, setPosition] = useState(null);
   const map = useMapEvents({
     click() {
@@ -9,8 +9,8 @@ function LocationMarker() {
     },
     locationfound(e) {
       setPosition(e.latlng);
+      props.globalPositionHandler(e.latlng);
       map.flyTo(e.latlng, map.getZoom());
-      console.log(e.latlng);
     },
   });
 

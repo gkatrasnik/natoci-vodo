@@ -7,8 +7,8 @@ const useStyles = makeStyles({
   AddLocation: {
     zIndex: "1",
     position: "fixed",
-    bottom: "15vh",
-    right: "10vw",
+    bottom: "20vh",
+    right: "8vw",
   },
   CurrentLocation: {
     zIndex: "1",

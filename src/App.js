@@ -7,23 +7,25 @@ import {
   BottomNavigation,
   BottomNavigationAction,
 } from "@material-ui/core";
-import { Add, Home, Map, Info, MyLocation } from "@material-ui/icons";
+import { Add, Home, Map, Info } from "@material-ui/icons";
 import useStyles from "./Styles";
 import "./App.css";
 import MapComponent from "./Components/MapComponent";
 
 function App() {
   const classes = useStyles();
-  //const [currentLocation, setCurrentLocation] = useState([51.505, 14.09]);
+  const [globalPosition, setGlobalPosition] = useState([51.505, 14.09]);
+
+  const globalPositionHandler = (position) => {
+    setGlobalPosition(position);
+    console.log(position);
+  };
 
   return (
     <CssBaseline>
-      <Container className={classes.root}>
-        <MapComponent />
+      <Container disableGutters={true} className={classes.root}>
+        <MapComponent globalPositionHandler={globalPositionHandler} />
 
-        <Fab className={classes.CurrentLocation}>
-          <MyLocation />
-        </Fab>
         <Fab className={classes.AddLocation}>
           <Add />
         </Fab>
