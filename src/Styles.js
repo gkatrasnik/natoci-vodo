@@ -4,9 +4,14 @@ const useStyles = makeStyles({
   root: {
     height: "100vh",
   },
-  fab: {
+  AddLocation: {
     position: "fixed",
     bottom: "15vh",
+    right: "10vw",
+  },
+  CurrentLocation: {
+    position: "fixed",
+    bottom: "30vh",
     right: "10vw",
   },
   BottomNavigation: {
