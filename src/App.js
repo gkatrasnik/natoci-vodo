@@ -10,30 +10,18 @@ import {
 import { Add, Home, Map, Info, MyLocation } from "@material-ui/icons";
 import useStyles from "./Styles";
 import "./App.css";
-import Geolocation from "./Components/Geolocation";
+import MapComponent from "./Components/MapComponent";
 
 function App() {
   const classes = useStyles();
-  const [currentLocation, setCurrentLocation] = useState(null);
-
-  //get current location
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-  }
-  function showPosition(position) {
-    console.log([position.coords.latitude, position.coords.longitude]);
-    setCurrentLocation([position.coords.latitude, position.coords.longitude]);
-  }
+  //const [currentLocation, setCurrentLocation] = useState([51.505, 14.09]);
 
   return (
     <CssBaseline>
       <Container className={classes.root}>
-        <Typography>{currentLocation}</Typography>
-        <Fab className={classes.CurrentLocation} onClick={getLocation}>
+        <MapComponent />
+
+        <Fab className={classes.CurrentLocation}>
           <MyLocation />
         </Fab>
         <Fab className={classes.AddLocation}>

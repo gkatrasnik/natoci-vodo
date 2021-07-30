@@ -5,14 +5,23 @@ const useStyles = makeStyles({
     height: "100vh",
   },
   AddLocation: {
+    zIndex: "1",
     position: "fixed",
     bottom: "15vh",
     right: "10vw",
   },
   CurrentLocation: {
+    zIndex: "1",
     position: "fixed",
     bottom: "30vh",
     right: "10vw",
+  },
+  MapComponent: {
+    zIndex: 0,
+    height: "90vh",
+    width: "100%",
+
+    marginBottom: "50px",
   },
   BottomNavigation: {
     position: "fixed",
