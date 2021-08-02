@@ -12,10 +12,10 @@ const useStyles = makeStyles({
     right: "8%",
   },
   CurrentLocation: {
-    zIndex: 1,
-    position: "fixed",
-    bottom: "30vh",
-    right: "10vw",
+    zIndex: 500,
+    position: "absolute",
+    bottom: "22%",
+    right: "8%",
   },
   MapComponent: {
     zIndex: 0,
