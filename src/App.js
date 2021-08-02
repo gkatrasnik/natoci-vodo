@@ -14,11 +14,14 @@ import MapComponent from "./Components/MapComponent";
 
 function App() {
   const classes = useStyles();
-  const [globalPosition, setGlobalPosition] = useState([51.505, 14.09]);
+  const [globalPosition, setGlobalPosition] = useState(null);
+
+  useEffect(() => {
+    console.log(globalPosition);
+  }, [globalPosition]);
 
   const globalPositionHandler = (position) => {
     setGlobalPosition(position);
-    console.log(position);
   };
 
   return (
