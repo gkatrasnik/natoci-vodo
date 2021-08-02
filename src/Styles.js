@@ -3,27 +3,27 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({
   root: {
     height: "100vh",
+    width: "100%",
   },
   AddLocation: {
-    zIndex: "1",
-    position: "fixed",
-    bottom: "20vh",
-    right: "8vw",
+    zIndex: 500,
+    position: "absolute",
+    bottom: "8%",
+    right: "8%",
   },
   CurrentLocation: {
-    zIndex: "1",
+    zIndex: 1,
     position: "fixed",
     bottom: "30vh",
     right: "10vw",
   },
   MapComponent: {
     zIndex: 0,
-    height: "92vh",
+    height: "92%",
     width: "100%",
-
-    marginBottom: "50px",
   },
   BottomNavigation: {
+    height: "8%",
     position: "fixed",
     bottom: 0,
     right: 0,

@@ -6,7 +6,9 @@ import {
   Popup,
   useMapEvents,
 } from "react-leaflet";
-import {} from "@material-ui/icons";
+import { Add } from "@material-ui/icons";
+import { Fab } from "@material-ui/core";
+
 import useStyles from "../Styles";
 import LocationMarker from "./LocationMarker";
 
@@ -25,6 +27,9 @@ function MapComponent(props) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <LocationMarker globalPositionHandler={props.globalPositionHandler} />
+      <Fab className={classes.AddLocation}>
+        <Add />
+      </Fab>
     </MapContainer>
   );
 }

@@ -29,9 +29,6 @@ function App() {
       <Container disableGutters={true} className={classes.root}>
         <MapComponent globalPositionHandler={globalPositionHandler} />
 
-        <Fab className={classes.AddLocation}>
-          <Add />
-        </Fab>
         <BottomNavigation className={classes.BottomNavigation}>
           <BottomNavigationAction
             label="Recents"
