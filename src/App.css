@@ -2,14 +2,42 @@ html {
   height: 100vh;
 }
 
-#root {
-  height: 100vh;
-}
-
 body {
   height: 100vh;
 }
 .App {
   text-align: center;
   height: 100vh;
+}
+
+.container {
+  height: 100%;
+}
+
+.addLocationStyle {
+  z-index: 500;
+  position: absolute !important;
+  bottom: 80px;
+  right: 8%;
+}
+
+.currentLocationStyle {
+  z-index: 500;
+  position: absolute !important;
+  bottom: 150px;
+  right: 8%;
+}
+
+.mapStyle {
+  z-index: 1;
+  height: 92%;
+  width: 100%;
+}
+
+.bottomNavigationStyle {
+  height: 8%;
+
+  bottom: 0;
+  right: 0;
+  left: 0;
 }

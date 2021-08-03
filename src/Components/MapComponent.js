@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { Add } from "@material-ui/icons";
+import { React, useState, useEffect } from "react";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { Fab } from "@material-ui/core";
-=======
-import { MapContainer, TileLayer } from "react-leaflet";
->>>>>>> ecca7762bf4fcb0ac20e9693823f82966a2768d5
-
-import useStyles from "../Styles";
+import { Add } from "@material-ui/icons";
+import "./../App.css";
+import firebase from "./Firebase.js";
+import "firebase/firestore";
 import LocationMarker from "./LocationMarker";
+import MarkersData from "./MarkersData";
 
 function MapComponent(props) {
-  const classes = useStyles();
+  const [markersData, setMarkersData] = useState(null);
 
   return (
     <MapContainer
-      className={classes.MapComponent}
+      className="mapStyle"
       center={[46.056946, 14.505751]}
       zoom={13}
       scrollWheelZoom={false}
@@ -24,7 +22,12 @@ function MapComponent(props) {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+
       <LocationMarker globalPositionHandler={props.globalPositionHandler} />
+
+      <Fab className="addLocationStyle" onClick={props.addLocation}>
+        <Add />
+      </Fab>
     </MapContainer>
   );
 }

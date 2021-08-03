@@ -3,24 +3,40 @@ import MapComponent from "./Components/MapComponent";
 import {
   CssBaseline,
   Container,
-  Fab,
   BottomNavigation,
   BottomNavigationAction,
 } from "@material-ui/core";
-import { Add, Home, Map, Info } from "@material-ui/icons";
-import useStyles from "./Styles";
+import { Home, Map, Info } from "@material-ui/icons";
 import "./App.css";
 import firebase from "./Components/Firebase.js";
 import "firebase/auth";
 import "firebase/firestore";
+import { Marker, Popup } from "react-leaflet";
 
 function App() {
-  const classes = useStyles();
   const [globalPosition, setGlobalPosition] = useState(null);
 
   useEffect(() => {
     console.log("global pos: " + globalPosition);
   }, [globalPosition]);
+
+  //on app load download markers data from firestore
+
+  const addLocation = () => {
+    firebase
+      .firestore()
+      .collection("vode")
+      .add({
+        lat: globalPosition[0],
+        lng: globalPosition[1],
+      })
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      });
+  };
 
   const globalPositionHandler = (position) => {
     setGlobalPosition(position);
@@ -28,13 +44,13 @@ function App() {
 
   return (
     <CssBaseline>
-      <Container disableGutters={true} className={classes.root}>
-        <MapComponent globalPositionHandler={globalPositionHandler}>
-          <Fab className={classes.AddLocation}>
-            <Add />
-          </Fab>
-        </MapComponent>
-        <BottomNavigation className={classes.BottomNavigation}>
+      <Container disableGutters={true} className="container">
+        <MapComponent
+          globalPositionHandler={globalPositionHandler}
+          addLocation={addLocation}
+        />
+
+        <BottomNavigation className="bottomNavigationStyle">
           <BottomNavigationAction
             label="Recents"
             value="recents"

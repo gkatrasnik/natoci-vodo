@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useMap, Marker, Popup } from "react-leaflet";
+
 import { Fab } from "@material-ui/core";
 import { MyLocation } from "@material-ui/icons";
-import useStyles from "../Styles";
+import "./../App.css";
 
 function LocationMarker(props) {
-  const classes = useStyles();
   const [position, setPosition] = useState(null);
   const map = useMap();
   const markerRef = useRef(null);
@@ -18,8 +18,8 @@ function LocationMarker(props) {
   const locate = () => {
     map.locate().on("locationfound", function (e) {
       const newPos = e.latlng;
-      setPosition([newPos.lat, newPos.lng]);
       map.flyTo(newPos, map.getZoom());
+      setPosition([newPos.lat, newPos.lng]);
       props.globalPositionHandler([newPos.lat, newPos.lng]);
     });
   };
@@ -42,7 +42,7 @@ function LocationMarker(props) {
   return position === null
     ? null
     : [
-        <Fab className={classes.CurrentLocation} onClick={locate} key={"fab"}>
+        <Fab className="currentLocationStyle" onClick={locate} key={"fab"}>
           <MyLocation />
         </Fab>,
 
@@ -52,7 +52,6 @@ function LocationMarker(props) {
           eventHandlers={eventHandlers}
           position={position}
           ref={markerRef}
-          key={"marker"}
         >
           <Popup>You are here</Popup>
         </Marker>,
