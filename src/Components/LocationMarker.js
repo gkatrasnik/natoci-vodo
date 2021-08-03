@@ -42,11 +42,12 @@ function LocationMarker(props) {
   return position === null
     ? null
     : [
-        <Fab className={classes.CurrentLocation} onClick={locate}>
+        <Fab className={classes.CurrentLocation} onClick={locate} key={"fab"}>
           <MyLocation />
         </Fab>,
 
         <Marker
+          key={"marker"}
           draggable={true}
           eventHandlers={eventHandlers}
           position={position}

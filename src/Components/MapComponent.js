@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMapEvents,
-} from "react-leaflet";
-import { Add } from "@material-ui/icons";
-import { Fab } from "@material-ui/core";
+import { MapContainer, TileLayer } from "react-leaflet";
 
 import useStyles from "../Styles";
 import LocationMarker from "./LocationMarker";
@@ -18,7 +10,7 @@ function MapComponent(props) {
   return (
     <MapContainer
       className={classes.MapComponent}
-      center={[46, 14]}
+      center={[46.056946, 14.505751]}
       zoom={13}
       scrollWheelZoom={false}
     >
@@ -27,9 +19,6 @@ function MapComponent(props) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <LocationMarker globalPositionHandler={props.globalPositionHandler} />
-      <Fab className={classes.AddLocation}>
-        <Add />
-      </Fab>
     </MapContainer>
   );
 }
