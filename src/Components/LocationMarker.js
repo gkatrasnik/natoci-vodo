@@ -47,6 +47,7 @@ function LocationMarker(props) {
         </Fab>,
 
         <Marker
+          key={"marker"}
           draggable={true}
           eventHandlers={eventHandlers}
           position={position}
