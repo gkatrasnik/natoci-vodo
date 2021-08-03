@@ -18,9 +18,9 @@ function LocationMarker(props) {
   const locate = () => {
     map.locate().on("locationfound", function (e) {
       const newPos = e.latlng;
-      setPosition(newPos);
+      setPosition([newPos.lat, newPos.lng]);
       map.flyTo(newPos, map.getZoom());
-      props.globalPositionHandler(newPos);
+      props.globalPositionHandler([newPos.lat, newPos.lng]);
     });
   };
 
@@ -31,8 +31,8 @@ function LocationMarker(props) {
         const marker = markerRef.current;
         if (marker != null) {
           const newPos = marker.getLatLng();
-          setPosition(newPos);
-          props.globalPositionHandler(newPos);
+          setPosition([newPos.lat, newPos.lng]);
+          props.globalPositionHandler([newPos.lat, newPos.lng]);
         }
       },
     }),
@@ -42,7 +42,7 @@ function LocationMarker(props) {
   return position === null
     ? null
     : [
-        <Fab className={classes.CurrentLocation} onClick={locate}>
+        <Fab className={classes.CurrentLocation} onClick={locate} key={"fab"}>
           <MyLocation />
         </Fab>,
 
@@ -51,6 +51,7 @@ function LocationMarker(props) {
           eventHandlers={eventHandlers}
           position={position}
           ref={markerRef}
+          key={"marker"}
         >
           <Popup>You are here</Popup>
         </Marker>,
