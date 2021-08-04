@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { useMap, Marker, Popup } from "react-leaflet";
+import { useMap, Marker, Popup, Circle } from "react-leaflet";
 import L from "leaflet";
 import { Fab } from "@material-ui/core";
-import { MyLocation } from "@material-ui/icons";
+import { LocationSearching, MyLocation } from "@material-ui/icons";
 import "./../App.css";
 
 function LocationMarker(props) {
   const [position, setPosition] = useState(null);
+  const [accuracy, setAccuracy] = useState(null);
+
   const map = useMap();
   const markerRef = useRef(null);
 
@@ -15,8 +17,7 @@ function LocationMarker(props) {
     options: {},
   });
   const greenIcon = new LeafIcon({
-    iconUrl:
-      "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|2ecc71&chf=a,s,ee00FFFF",
+    iconUrl: process.env.PUBLIC_URL + "/icons/myLocation.png",
   });
   const [icon, setIcon] = useState(greenIcon);
 
@@ -27,8 +28,10 @@ function LocationMarker(props) {
 
   const locate = () => {
     map.locate().on("locationfound", function (e) {
+      let radius = e.accuracy;
       const newPos = e.latlng;
       map.flyTo(newPos, map.getZoom());
+      setAccuracy(radius);
       setPosition([newPos.lat, newPos.lng]);
       props.globalPositionHandler([newPos.lat, newPos.lng]);
     });
@@ -70,6 +73,7 @@ function LocationMarker(props) {
         >
           <Popup>You are here</Popup>
         </Marker>,
+        <Circle key={"acccuracy"} center={position} radius={accuracy} />,
       ];
 }
 

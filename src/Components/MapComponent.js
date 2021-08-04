@@ -32,7 +32,7 @@ function MapComponent(props) {
     <MapContainer
       className="mapStyle"
       center={[46.056946, 14.505751]}
-      zoom={13}
+      zoom={16}
       scrollWheelZoom={false}
     >
       <TileLayer

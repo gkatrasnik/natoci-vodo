@@ -36,6 +36,9 @@ function App() {
       .catch((error) => {
         console.error("Error adding document: ", error);
       });
+    alert(
+      "You added location: " + globalPosition[0] + " - " + globalPosition[1]
+    );
   };
 
   const globalPositionHandler = (position) => {
@@ -49,24 +52,6 @@ function App() {
           globalPositionHandler={globalPositionHandler}
           addLocation={addLocation}
         />
-
-        <BottomNavigation className="bottomNavigationStyle">
-          <BottomNavigationAction
-            label="Recents"
-            value="recents"
-            icon={<Home />}
-          />
-          <BottomNavigationAction
-            label="Nearby"
-            value="nearby"
-            icon={<Map />}
-          />
-          <BottomNavigationAction
-            label="Folder"
-            value="folder"
-            icon={<Info />}
-          />
-        </BottomNavigation>
       </Container>
     </CssBaseline>
   );
