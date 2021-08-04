@@ -6,10 +6,27 @@ import "./../App.css";
 import firebase from "./Firebase.js";
 import "firebase/firestore";
 import LocationMarker from "./LocationMarker";
-import MarkersData from "./MarkersData";
 
 function MapComponent(props) {
-  const [markersData, setMarkersData] = useState(null);
+  const [markersData, setMarkersData] = useState([]);
+
+  useEffect(() => {
+    getMarkersData();
+  }, []);
+
+  //get markers from Firestore
+  const getMarkersData = async () => {
+    firebase
+      .firestore()
+      .collection("vode")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          setMarkersData((markersData) => [...markersData, doc.data()]);
+        });
+      });
+  };
 
   return (
     <MapContainer
@@ -22,6 +39,10 @@ function MapComponent(props) {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      {markersData &&
+        markersData.map((marker, i) => {
+          return <Marker key={i} position={[marker.lat, marker.lng]} />;
+        })}
 
       <LocationMarker globalPositionHandler={props.globalPositionHandler} />
 

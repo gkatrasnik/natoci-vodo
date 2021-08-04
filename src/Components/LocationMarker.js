@@ -13,7 +13,7 @@ function LocationMarker(props) {
   //on locate set component and global position
   useEffect(() => {
     locate();
-  }, [map]);
+  }, []);
 
   const locate = () => {
     map.locate().on("locationfound", function (e) {

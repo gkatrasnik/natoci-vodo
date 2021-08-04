@@ -11,7 +11,6 @@ import "./App.css";
 import firebase from "./Components/Firebase.js";
 import "firebase/auth";
 import "firebase/firestore";
-import { Marker, Popup } from "react-leaflet";
 
 function App() {
   const [globalPosition, setGlobalPosition] = useState(null);
@@ -29,6 +28,7 @@ function App() {
       .add({
         lat: globalPosition[0],
         lng: globalPosition[1],
+        created: firebase.firestore.Timestamp.now(),
       })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
