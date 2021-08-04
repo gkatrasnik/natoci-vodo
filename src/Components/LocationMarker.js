@@ -30,7 +30,7 @@ function LocationMarker(props) {
     map.locate().on("locationfound", function (e) {
       let radius = e.accuracy;
       const newPos = e.latlng;
-      map.flyTo(newPos, map.getZoom());
+      map.flyTo(newPos, 16);
       setAccuracy(radius);
       setPosition([newPos.lat, newPos.lng]);
       props.globalPositionHandler([newPos.lat, newPos.lng]);
@@ -69,7 +69,6 @@ function LocationMarker(props) {
           eventHandlers={eventHandlers}
           position={position}
           ref={markerRef}
-          icon={icon}
         >
           <Popup>You are here</Popup>
         </Marker>,
