@@ -12,15 +12,6 @@ function LocationMarker(props) {
   const map = useMap();
   const markerRef = useRef(null);
 
-  //custom current location icon
-  const LeafIcon = L.Icon.extend({
-    options: {},
-  });
-  const greenIcon = new LeafIcon({
-    iconUrl: process.env.PUBLIC_URL + "/icons/myLocation.png",
-  });
-  const [icon, setIcon] = useState(greenIcon);
-
   //on locate set component and global position
   useEffect(() => {
     locate();
