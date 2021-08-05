@@ -18,7 +18,7 @@ function LocationMarker(props) {
   }, []);
 
   const locate = () => {
-    map.locate().on("locationfound", function (e) {
+    map.locate({ enableHighAccuracy: true }).on("locationfound", function (e) {
       let radius = e.accuracy;
       const newPos = e.latlng;
       map.flyTo(newPos, 16);
@@ -47,24 +47,24 @@ function LocationMarker(props) {
     []
   );
 
-  return position === null
-    ? null
-    : [
-        <Fab className="currentLocationStyle" onClick={locate} key={"fab"}>
-          <MyLocation />
-        </Fab>,
+  return position === null ? null : (
+    <>
+      <Fab className="currentLocationStyle" onClick={locate} key={"fab"}>
+        <MyLocation />
+      </Fab>
 
-        <Marker
-          key={"marker"}
-          draggable={true}
-          eventHandlers={eventHandlers}
-          position={position}
-          ref={markerRef}
-        >
-          <Popup>You are here</Popup>
-        </Marker>,
-        <Circle key={"acccuracy"} center={position} radius={accuracy} />,
-      ];
+      <Marker
+        key={"marker"}
+        draggable={true}
+        eventHandlers={eventHandlers}
+        position={position}
+        ref={markerRef}
+      >
+        <Popup>You are here</Popup>
+        <Circle key={"acccuracy"} center={position} radius={accuracy} />
+      </Marker>
+    </>
+  );
 }
 
 export default LocationMarker;

@@ -1,33 +1,26 @@
 import React, { useState, useEffect } from "react";
 import MapComponent from "./Components/MapComponent";
-import {
-  CssBaseline,
-  Container,
-  BottomNavigation,
-  BottomNavigationAction,
-} from "@material-ui/core";
-import { Home, Map, Info } from "@material-ui/icons";
+import AddLocationModal from "./Components/AddLocationModal";
+import { CssBaseline, Container } from "@material-ui/core";
 import "./App.css";
 import firebase from "./Components/Firebase.js";
 import "firebase/auth";
 import "firebase/firestore";
 
 function App() {
-  const [globalPosition, setGlobalPosition] = useState(null);
-
-  useEffect(() => {
-    console.log("global pos: " + globalPosition);
-  }, [globalPosition]);
+  const [globalPosition, setGlobalPosition] = useState([]);
+  //const [desc, setDesc] = useState("");
 
   //on app load download markers data from firestore
 
-  const addLocation = () => {
+  const addLocation = (description) => {
     firebase
       .firestore()
       .collection("vode")
       .add({
         lat: globalPosition[0],
         lng: globalPosition[1],
+        description: description,
         created: firebase.firestore.Timestamp.now(),
       })
       .then((docRef) => {
@@ -36,9 +29,7 @@ function App() {
       .catch((error) => {
         console.error("Error adding document: ", error);
       });
-    alert(
-      "You added location: " + globalPosition[0] + " - " + globalPosition[1]
-    );
+    alert(`you successfully added Location \n${description}`);
   };
 
   const globalPositionHandler = (position) => {
@@ -48,8 +39,13 @@ function App() {
   return (
     <CssBaseline>
       <Container disableGutters={true} className="container">
+        <AddLocationModal
+          addLocation={addLocation}
+          globalPosition={globalPosition}
+        />
         <MapComponent
           globalPositionHandler={globalPositionHandler}
+          globalPosition={globalPosition}
           addLocation={addLocation}
         />
       </Container>
