@@ -49,19 +49,17 @@ function LocationMarker(props) {
 
   return position === null ? null : (
     <>
-      <Fab className="currentLocationStyle" onClick={locate} key={"fab"}>
+      <Fab className="currentLocationStyle" onClick={locate}>
         <MyLocation />
       </Fab>
-
+      <Circle center={position} radius={accuracy} />
       <Marker
-        key={"marker"}
         draggable={true}
         eventHandlers={eventHandlers}
         position={position}
         ref={markerRef}
       >
         <Popup>You are here</Popup>
-        <Circle key={"acccuracy"} center={position} radius={accuracy} />
       </Marker>
     </>
   );

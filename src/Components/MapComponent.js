@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import AddLocationModal from "./AddLocationModal";
 
 import "./../App.css";
 import firebase from "./Firebase.js";
@@ -46,6 +47,10 @@ function MapComponent(props) {
             </Marker>
           );
         })}
+      <AddLocationModal
+        addLocation={props.addLocation}
+        globalPosition={props.globalPosition}
+      />
     </MapContainer>
   );
 }

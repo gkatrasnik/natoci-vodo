@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MapComponent from "./Components/MapComponent";
 import AddLocationModal from "./Components/AddLocationModal";
+import Navbar from "./Components/Navbar";
 import { CssBaseline, Container } from "@material-ui/core";
 import "./App.css";
 import firebase from "./Components/Firebase.js";
@@ -39,10 +40,8 @@ function App() {
   return (
     <CssBaseline>
       <Container disableGutters={true} className="container">
-        <AddLocationModal
-          addLocation={addLocation}
-          globalPosition={globalPosition}
-        />
+        <Navbar></Navbar>
+
         <MapComponent
           globalPositionHandler={globalPositionHandler}
           globalPosition={globalPosition}
