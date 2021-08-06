@@ -12,7 +12,7 @@ import { Add, Description } from "@material-ui/icons";
 export default function AddLocationModal(props) {
   const [open, setOpen] = React.useState(false);
   const [position, setPosition] = React.useState(null);
-  const [description, setDescription] = React.useState(null);
+  const [description, setDescription] = React.useState("");
 
   React.useEffect(() => {
     setPosition(props.globalPosition);
@@ -28,9 +28,9 @@ export default function AddLocationModal(props) {
 
   const submitLocationHandler = () => {
     console.log(description);
-    if (description !== null) {
+    if (description !== "") {
       props.addLocation(description);
-      setDescription(null);
+      setDescription("");
       handleClose();
     } else {
       alert("Please add a short description");

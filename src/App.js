@@ -1,12 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MapComponent from "./Components/MapComponent";
-import AddLocationModal from "./Components/AddLocationModal";
+
 import Navbar from "./Components/Navbar";
 import { CssBaseline, Container } from "@material-ui/core";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import "./App.css";
 import firebase from "./Components/Firebase.js";
 import "firebase/auth";
 import "firebase/firestore";
+
+export const customTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#2196f3", //blue
+    },
+    secondary: {
+      main: "#ffc400", //amber
+    },
+  },
+});
 
 function App() {
   const [globalPosition, setGlobalPosition] = useState([]);
@@ -39,15 +51,17 @@ function App() {
 
   return (
     <CssBaseline>
-      <Container disableGutters={true} className="container">
-        <Navbar></Navbar>
+      <ThemeProvider theme={customTheme}>
+        <Container disableGutters={true} className="container">
+          <Navbar></Navbar>
 
-        <MapComponent
-          globalPositionHandler={globalPositionHandler}
-          globalPosition={globalPosition}
-          addLocation={addLocation}
-        />
-      </Container>
+          <MapComponent
+            globalPositionHandler={globalPositionHandler}
+            globalPosition={globalPosition}
+            addLocation={addLocation}
+          />
+        </Container>
+      </ThemeProvider>
     </CssBaseline>
   );
 }
