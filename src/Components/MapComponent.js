@@ -2,10 +2,9 @@ import { React, useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import AddLocationModal from "./AddLocationModal";
 
-import "./../App.css";
-import firebase from "./Firebase.js";
-import "firebase/firestore";
+import { firestore, timestamp } from "./Firebase";
 import LocationMarker from "./LocationMarker";
+import "./../App.css";
 
 function MapComponent(props) {
   const [markersData, setMarkersData] = useState([]);
@@ -16,8 +15,7 @@ function MapComponent(props) {
 
   //get markers from Firestore
   const getMarkersData = async () => {
-    firebase
-      .firestore()
+    firestore
       .collection("vode")
       .get()
       .then((querySnapshot) => {
@@ -26,6 +24,32 @@ function MapComponent(props) {
           setMarkersData((markersData) => [...markersData, doc.data()]);
         });
       });
+  };
+
+  const [globalPosition, setGlobalPosition] = useState([]);
+
+  //on app load download markers data from firestore
+
+  const addLocation = (description) => {
+    firestore
+      .collection("vode")
+      .add({
+        lat: globalPosition[0],
+        lng: globalPosition[1],
+        description: description,
+        created: timestamp,
+      })
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      });
+    alert(`you successfully added Location \n${description}`);
+  };
+
+  const globalPositionHandler = (position) => {
+    setGlobalPosition(position);
   };
 
   return (
@@ -38,7 +62,7 @@ function MapComponent(props) {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <LocationMarker globalPositionHandler={props.globalPositionHandler} />
+      <LocationMarker globalPositionHandler={globalPositionHandler} />
       {markersData &&
         markersData.map((marker, i) => {
           return (
@@ -48,8 +72,8 @@ function MapComponent(props) {
           );
         })}
       <AddLocationModal
-        addLocation={props.addLocation}
-        globalPosition={props.globalPosition}
+        addLocation={addLocation}
+        globalPosition={globalPosition}
       />
     </MapContainer>
   );

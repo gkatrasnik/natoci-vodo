@@ -6,11 +6,12 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { Fab } from "@material-ui/core";
+import { Fab, Switch, FormControlLabel, FormGroup } from "@material-ui/core";
 import { Add, Description } from "@material-ui/icons";
 
 export default function AddLocationModal(props) {
   const [open, setOpen] = React.useState(false);
+
   const [position, setPosition] = React.useState(null);
   const [description, setDescription] = React.useState("");
 
@@ -18,10 +19,10 @@ export default function AddLocationModal(props) {
     setPosition(props.globalPosition);
   }, [props.globalPosition]);
 
+  //Handling open/close add location modal
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -63,6 +64,7 @@ export default function AddLocationModal(props) {
             disabled={true}
             fullWidth
           />
+
           <TextField
             autoFocus
             required

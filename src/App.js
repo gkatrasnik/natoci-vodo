@@ -1,13 +1,21 @@
-import React, { useState } from "react";
-import MapComponent from "./Components/MapComponent";
+import React from "react";
 
-import Navbar from "./Components/Navbar";
+import MapComponent from "./components/MapComponent";
+import Navbar from "./components/Navbar";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import ForgotPassword from "./components/ForgotPassword";
+import UpdateProfile from "./components/UpdateProfile";
+
+import PrivateRoute from "./components/PrivateRoute";
+import { AuthProvider } from "./contexts/AuthContext";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 import { CssBaseline, Container } from "@material-ui/core";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import "./App.css";
-import firebase from "./Components/Firebase.js";
-import "firebase/auth";
-import "firebase/firestore";
+
+import app from "./components/Firebase";
 
 export const customTheme = createTheme({
   palette: {
@@ -21,45 +29,22 @@ export const customTheme = createTheme({
 });
 
 function App() {
-  const [globalPosition, setGlobalPosition] = useState([]);
-  //const [desc, setDesc] = useState("");
-
-  //on app load download markers data from firestore
-
-  const addLocation = (description) => {
-    firebase
-      .firestore()
-      .collection("vode")
-      .add({
-        lat: globalPosition[0],
-        lng: globalPosition[1],
-        description: description,
-        created: firebase.firestore.Timestamp.now(),
-      })
-      .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-      })
-      .catch((error) => {
-        console.error("Error adding document: ", error);
-      });
-    alert(`you successfully added Location \n${description}`);
-  };
-
-  const globalPositionHandler = (position) => {
-    setGlobalPosition(position);
-  };
-
   return (
     <CssBaseline>
       <ThemeProvider theme={customTheme}>
         <Container disableGutters={true} className="container">
-          <Navbar></Navbar>
+          <BrowserRouter>
+            <AuthProvider>
+              <Navbar />
+              <Switch>
+                <PrivateRoute exact path="/" component={MapComponent} />
 
-          <MapComponent
-            globalPositionHandler={globalPositionHandler}
-            globalPosition={globalPosition}
-            addLocation={addLocation}
-          />
+                <Route path="/signup" component={Signup} />
+                <Route path="/login" component={Login} />
+                <Route path="/forgot-password" component={ForgotPassword} />
+              </Switch>
+            </AuthProvider>
+          </BrowserRouter>
         </Container>
       </ThemeProvider>
     </CssBaseline>
