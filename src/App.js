@@ -37,11 +37,18 @@ function App() {
             <AuthProvider>
               <Navbar />
               <Switch>
-                <PrivateRoute exact path="/" component={MapComponent} />
+                <PrivateRoute
+                  exact
+                  path="/pitna-voda"
+                  component={MapComponent}
+                />
 
-                <Route path="/signup" component={Signup} />
-                <Route path="/login" component={Login} />
-                <Route path="/forgot-password" component={ForgotPassword} />
+                <Route path="/pitna-voda/signup" component={Signup} />
+                <Route path="/pitna-voda/login" component={Login} />
+                <Route
+                  path="/pitna-voda/forgot-password"
+                  component={ForgotPassword}
+                />
               </Switch>
             </AuthProvider>
           </BrowserRouter>
