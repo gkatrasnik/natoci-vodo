@@ -55,7 +55,7 @@ export default function ForgotPassword() {
             </Button>
           </form>
           <div className="w-100 text-center mt-3">
-            <Link to="/login">Login</Link>
+            Have an account? <Link to="/pitna-voda/login">Login</Link>
           </div>
 
           <div className="w-100 text-center mt-2">
