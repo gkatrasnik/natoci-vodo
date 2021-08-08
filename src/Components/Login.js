@@ -6,7 +6,9 @@ import {
   CardContent,
   TextField,
   FormControl,
+  Typography,
   Container,
+  Grid,
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { useAuth } from "../contexts/AuthContext";
@@ -67,7 +69,8 @@ export default function Login() {
             />
 
             <Button
-              className="submit"
+              fullWidth
+              margin="normal"
               disabled={loading}
               variant="contained"
               color="primary"
@@ -77,13 +80,18 @@ export default function Login() {
             </Button>
           </form>
 
-          <div className="w-100 text-center mt-2">
-            Forgot password?{" "}
-            <Link to="/pitna-voda/forgot-password">Change it</Link>
-          </div>
-          <div className="w-100 text-center mt-2">
-            Need an account? <Link to="/pitna-voda/signup">Sign Up</Link>
-          </div>
+          <Grid container>
+            <Grid item xs>
+              <Link to="/pitna-voda/forgot-password" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link to="/pitna-voda/signup" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
         </div>
       </Container>
     </>

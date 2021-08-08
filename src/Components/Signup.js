@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Button, Container, TextField } from "@material-ui/core";
+import { Button, Container, TextField, Grid } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
@@ -77,7 +77,8 @@ export default function Signup() {
 
             <Button
               disabled={loading}
-              className="submit"
+              fullWidth
+              margin="normal"
               variant="contained"
               color="primary"
               type="submit"
@@ -86,9 +87,13 @@ export default function Signup() {
             </Button>
           </form>
 
-          <div className="w-100 text-center mt-2">
-            Already have an account? <Link to="/pitna-voda/login">Log In</Link>
-          </div>
+          <Grid container>
+            <Grid item>
+              <Link to="/pitna-voda/login" variant="body2">
+                {"Already have an account? Log in"}
+              </Link>
+            </Grid>
+          </Grid>
         </div>
       </Container>
     </>

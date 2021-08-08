@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Button, Container, TextField, FormControl } from "@material-ui/core";
+import { Button, Container, TextField, Grid } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
@@ -46,7 +46,8 @@ export default function ForgotPassword() {
             />
             <Button
               disabled={loading}
-              className="submit"
+              fullWidth
+              margin="normal"
               variant="contained"
               color="primary"
               type="submit"
@@ -54,13 +55,19 @@ export default function ForgotPassword() {
               Reset Password
             </Button>
           </form>
-          <div className="w-100 text-center mt-3">
-            Have an account? <Link to="/pitna-voda/login">Login</Link>
-          </div>
 
-          <div className="w-100 text-center mt-2">
-            Need an account? <Link to="/pitna-voda/signup">Sign Up</Link>
-          </div>
+          <Grid container>
+            <Grid item xs>
+              <Link to="/pitna-voda/login" variant="body2">
+                {"Already have an account? Log in"}
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link to="/pitna-voda/signup" variant="body2">
+                {"Need an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
         </div>
       </Container>
     </>
