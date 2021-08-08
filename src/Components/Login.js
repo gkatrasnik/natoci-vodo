@@ -6,6 +6,7 @@ import {
   CardContent,
   TextField,
   FormControl,
+  Container,
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { useAuth } from "../contexts/AuthContext";
@@ -36,50 +37,55 @@ export default function Login() {
 
   return (
     <>
-      <Card>
-        <CardContent>
-          <CardActionArea>
-            <h2 className="text-center mb-4">Log in</h2>
-            {error && <Alert severity="error">{error}</Alert>}
-            <form onSubmit={handleSubmit}>
-              <FormControl id="email">
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  inputRef={emailRef}
-                  type="email"
-                />
-              </FormControl>
-              <FormControl id="password">
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="password"
-                  label="Password"
-                  name="password"
-                  inputRef={passwordRef}
-                  type="password"
-                />
-              </FormControl>
+      <Container component="main" maxWidth="xs">
+        <div className="paper">
+          <h2>Log in</h2>
+          {error && <Alert severity="error">{error}</Alert>}
+          <form onSubmit={handleSubmit}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email"
+              name="email"
+              inputRef={emailRef}
+              type="email"
+            />
 
-              <Button disabled={loading} className="w-100" type="submit">
-                Login
-              </Button>
-            </form>
-          </CardActionArea>
-        </CardContent>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/pitna-voda/signup">Sign Up</Link>
-      </div>
-      <div className="w-100 text-center mt-2">
-        Forgot password? <Link to="/pitna-voda/forgot-password">Change it</Link>
-      </div>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="password"
+              label="Password"
+              name="password"
+              inputRef={passwordRef}
+              type="password"
+            />
+
+            <Button
+              className="submit"
+              disabled={loading}
+              variant="contained"
+              color="primary"
+              type="submit"
+            >
+              Login
+            </Button>
+          </form>
+
+          <div className="w-100 text-center mt-2">
+            Forgot password?{" "}
+            <Link to="/pitna-voda/forgot-password">Change it</Link>
+          </div>
+          <div className="w-100 text-center mt-2">
+            Need an account? <Link to="/pitna-voda/signup">Sign Up</Link>
+          </div>
+        </div>
+      </Container>
     </>
   );
 }
