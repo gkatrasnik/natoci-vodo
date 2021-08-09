@@ -86,12 +86,12 @@ export default function ForgotPassword() {
 
           <Grid container>
             <Grid item xs>
-              <Link to="/pitna-voda/login" variant="body2">
+              <Link to="/login" variant="body2">
                 Log In
               </Link>
             </Grid>
             <Grid item>
-              <Link to="/pitna-voda/signup" variant="body2">
+              <Link to="/signup" variant="body2">
                 Need an account? Sign Up
               </Link>
             </Grid>

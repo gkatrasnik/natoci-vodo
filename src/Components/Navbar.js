@@ -33,7 +33,7 @@ export default function ButtonAppBar() {
 
     try {
       await logout();
-      history.push("/pitna-voda/login");
+      history.push("/login");
     } catch {
       setError("Failed to log out");
     }
