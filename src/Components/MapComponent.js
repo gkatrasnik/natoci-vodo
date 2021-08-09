@@ -4,6 +4,7 @@ import AddLocationModal from "./AddLocationModal";
 import { makeStyles } from "@material-ui/core";
 import { firestore, timestamp } from "./Firebase";
 import LocationMarker from "./LocationMarker";
+import { useAuth } from "../contexts/AuthContext";
 import "./../App.css";
 
 const useStyles = makeStyles({
@@ -14,8 +15,10 @@ const useStyles = makeStyles({
 });
 
 function MapComponent(props) {
+  const { currentUser } = useAuth();
   const classes = useStyles();
   const [markersData, setMarkersData] = useState([]);
+  const [globalPosition, setGlobalPosition] = useState([]);
 
   useEffect(() => {
     getMarkersData();
@@ -34,8 +37,6 @@ function MapComponent(props) {
       });
   };
 
-  const [globalPosition, setGlobalPosition] = useState([]);
-
   //on app load download markers data from firestore
 
   const addLocation = (description) => {
@@ -46,6 +47,7 @@ function MapComponent(props) {
         lng: globalPosition[1],
         description: description,
         created: timestamp,
+        uid: currentUser.uid,
       })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);

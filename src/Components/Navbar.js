@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
+import { InvertColors } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,8 +51,9 @@ export default function ButtonAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Pitna Voda
+          <InvertColors />
+          <Typography variant="body1" className={classes.title}>
+            {currentUser.email}
           </Typography>
           {currentUser && (
             <Button

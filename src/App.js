@@ -1,21 +1,15 @@
 import React from "react";
-
 import MapComponent from "./components/MapComponent";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import ForgotPassword from "./components/ForgotPassword";
-import UpdateProfile from "./components/UpdateProfile";
-
 import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
 import { CssBaseline, Container, makeStyles } from "@material-ui/core";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import "./App.css";
-
-import app from "./components/Firebase";
 
 export const customTheme = createTheme({
   palette: {
