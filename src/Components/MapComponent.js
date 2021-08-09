@@ -1,12 +1,20 @@
 import { React, useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import AddLocationModal from "./AddLocationModal";
-
+import { makeStyles } from "@material-ui/core";
 import { firestore, timestamp } from "./Firebase";
 import LocationMarker from "./LocationMarker";
 import "./../App.css";
 
+const useStyles = makeStyles({
+  mapStyle: {
+    height: "95vh",
+    width: "100%",
+  },
+});
+
 function MapComponent(props) {
+  const classes = useStyles();
   const [markersData, setMarkersData] = useState([]);
 
   useEffect(() => {
@@ -54,7 +62,7 @@ function MapComponent(props) {
 
   return (
     <MapContainer
-      className="mapStyle"
+      className={classes.mapStyle}
       center={[46.056946, 14.505751]}
       zoom={16}
     >

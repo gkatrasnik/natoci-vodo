@@ -11,7 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { CssBaseline, Container } from "@material-ui/core";
+import { CssBaseline, Container, makeStyles } from "@material-ui/core";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import "./App.css";
 
@@ -26,6 +26,10 @@ export const customTheme = createTheme({
       main: "#ffc400", //amber
     },
   },
+});
+
+const useStyles = makeStyles({
+  container: {},
 });
 
 function App() {

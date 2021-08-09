@@ -6,10 +6,20 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { Fab, Switch, FormControlLabel, FormGroup } from "@material-ui/core";
-import { Add, Description } from "@material-ui/icons";
+import { Fab, makeStyles } from "@material-ui/core";
+import { Add } from "@material-ui/icons";
+
+const useStyles = makeStyles({
+  addLocationStyle: {
+    zIndex: 500,
+    position: "absolute !important",
+    bottom: "120px",
+    right: "8%",
+  },
+});
 
 export default function AddLocationModal(props) {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const [position, setPosition] = React.useState(null);
@@ -41,7 +51,7 @@ export default function AddLocationModal(props) {
   return (
     <>
       <Fab
-        className="addLocationStyle"
+        className={classes.addLocationStyle}
         onClick={() => {
           handleClickOpen();
         }}

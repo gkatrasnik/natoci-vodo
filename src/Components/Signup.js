@@ -1,10 +1,37 @@
 import React, { useRef, useState } from "react";
-import { Button, Container, TextField, Grid } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  TextField,
+  Grid,
+  makeStyles,
+} from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
 export default function Signup() {
+  const classes = useStyles();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -35,10 +62,10 @@ export default function Signup() {
   return (
     <>
       <Container component="main" maxWidth="xs">
-        <div className="paper">
+        <div className={classes.paper}>
           <h2>Sign up</h2>
           {error && <Alert severity="error">{error}</Alert>}
-          <form onSubmit={handleSubmit}>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -76,6 +103,7 @@ export default function Signup() {
             />
 
             <Button
+              className={classes.submit}
               disabled={loading}
               fullWidth
               margin="normal"
@@ -90,7 +118,7 @@ export default function Signup() {
           <Grid container>
             <Grid item>
               <Link to="/pitna-voda/login" variant="body2">
-                {"Already have an account? Log in"}
+                Have an account? Log In
               </Link>
             </Grid>
           </Grid>

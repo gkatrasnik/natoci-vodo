@@ -53,7 +53,16 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Pitna Voda
           </Typography>
-          <Button onClick={handleLogout}>Log Out</Button>
+          {currentUser && (
+            <Button
+              variant="contained"
+              color="primary"
+              disableElevation
+              onClick={handleLogout}
+            >
+              Log Out
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>

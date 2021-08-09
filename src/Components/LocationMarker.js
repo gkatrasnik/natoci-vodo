@@ -1,11 +1,21 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useMap, Marker, Popup, Circle } from "react-leaflet";
 import L from "leaflet";
-import { Fab } from "@material-ui/core";
+import { Fab, makeStyles } from "@material-ui/core";
 import { LocationSearching, MyLocation } from "@material-ui/icons";
 import "./../App.css";
 
+const useStyles = makeStyles({
+  currentLocationStyle: {
+    zIndex: 500,
+    position: "absolute !important",
+    bottom: "200px",
+    right: "8%",
+  },
+});
+
 function LocationMarker(props) {
+  const classes = useStyles();
   const [position, setPosition] = useState(null);
   const [accuracy, setAccuracy] = useState(null);
 
@@ -49,7 +59,7 @@ function LocationMarker(props) {
 
   return position === null ? null : (
     <>
-      <Fab className="currentLocationStyle" onClick={locate}>
+      <Fab className={classes.currentLocationStyle} onClick={locate}>
         <MyLocation />
       </Fab>
       <Circle center={position} radius={accuracy} />

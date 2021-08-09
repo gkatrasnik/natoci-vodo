@@ -1,10 +1,37 @@
 import React, { useRef, useState } from "react";
-import { Button, Container, TextField, Grid } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  TextField,
+  Grid,
+  makeStyles,
+} from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
 export default function ForgotPassword() {
+  const classes = useStyles();
   const emailRef = useRef();
   const { resetPassword } = useAuth();
   const [error, setError] = useState("");
@@ -30,11 +57,11 @@ export default function ForgotPassword() {
   return (
     <>
       <Container component="main" maxWidth="xs">
-        <div className="paper">
+        <div className={classes.paper}>
           <h2>Password Reset</h2>
           {error && <Alert variant="error">{error}</Alert>}
           {message && <Alert variant="success">{message}</Alert>}
-          <form onSubmit={handleSubmit}>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               margin="normal"
               fullWidth
@@ -45,6 +72,7 @@ export default function ForgotPassword() {
               required
             />
             <Button
+              className={classes.submit}
               disabled={loading}
               fullWidth
               margin="normal"
@@ -59,12 +87,12 @@ export default function ForgotPassword() {
           <Grid container>
             <Grid item xs>
               <Link to="/pitna-voda/login" variant="body2">
-                {"Already have an account? Log in"}
+                Log In
               </Link>
             </Grid>
             <Grid item>
               <Link to="/pitna-voda/signup" variant="body2">
-                {"Need an account? Sign Up"}
+                Need an account? Sign Up
               </Link>
             </Grid>
           </Grid>
