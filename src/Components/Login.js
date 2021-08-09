@@ -52,7 +52,7 @@ export default function Login() {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
+      history.push("/pitna-voda");
     } catch {
       setError("Failed to log in");
     }
@@ -106,12 +106,12 @@ export default function Login() {
 
           <Grid container>
             <Grid item xs>
-              <Link to="/forgot-password" variant="body2">
+              <Link to="/pitna-voda/forgot-password" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link to="/signup" variant="body2">
+              <Link to="/pitna-voda/signup" variant="body2">
                 Need an account? Sign Up
               </Link>
             </Grid>

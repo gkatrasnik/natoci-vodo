@@ -33,7 +33,7 @@ export default function ButtonAppBar() {
 
     try {
       await logout();
-      history.push("/login");
+      history.push("/pitna-voda/login");
     } catch {
       setError("Failed to log out");
     }
@@ -52,9 +52,11 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <InvertColors />
-          <Typography variant="body1" className={classes.title}>
-            {currentUser.email}
-          </Typography>
+          {currentUser && (
+            <Typography variant="body1" className={classes.title}>
+              {currentUser.email}
+            </Typography>
+          )}
           {currentUser && (
             <Button
               variant="contained"
