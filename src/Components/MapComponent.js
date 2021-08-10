@@ -1,7 +1,9 @@
 import { React, useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
 import AddLocationModal from "./AddLocationModal";
-import { makeStyles, Button } from "@material-ui/core";
+import { makeStyles, Button, Typography } from "@material-ui/core";
+import { Delete } from "@material-ui/icons";
 import { firestore, timestamp } from "./Firebase";
 import LocationMarker from "./LocationMarker";
 import { useAuth } from "../contexts/AuthContext";
@@ -60,7 +62,6 @@ function MapComponent(props) {
       .catch((error) => {
         console.error("Error adding document: ", error);
       });
-    alert(`you successfully added Location \n${description}`);
   };
 
   //delete marker from firestore
@@ -75,13 +76,26 @@ function MapComponent(props) {
       .catch((error) => {
         console.error("Error removing document: ", error);
       });
-    alert(`you deleted Location \n${marker.description}`);
   };
 
   //handles current marker location
   const globalPositionHandler = (position) => {
     setGlobalPosition(position);
   };
+
+  let blueWaterIcon = L.icon({
+    iconUrl: process.env.PUBLIC_URL + "/icons/drop-blue.png",
+    iconSize: [30, 30], // size of the icon
+    iconAnchor: [15, 20], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -20], // point from which the popup should open relative to the iconAnchor
+  });
+
+  let blackWaterIcon = L.icon({
+    iconUrl: process.env.PUBLIC_URL + "/icons/drop-black.png",
+    iconSize: [30, 30], // size of the icon
+    iconAnchor: [15, 20], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -20], // point from which the popup should open relative to the iconAnchor
+  });
 
   return (
     <MapContainer
@@ -98,13 +112,20 @@ function MapComponent(props) {
         markersData.map((marker, i) => {
           if (currentUser.uid === marker.uid) {
             return (
-              <Marker key={i} position={[marker.lat, marker.lng]}>
+              <Marker
+                key={i}
+                position={[marker.lat, marker.lng]}
+                icon={blueWaterIcon}
+              >
                 <Popup>
-                  {marker.description}
+                  <Typography>{marker.description} </Typography>
+
                   <Button
                     marker={marker}
+                    size="small"
                     variant="contained"
                     color="primary"
+                    startIcon={<Delete />}
                     onClick={() => {
                       deleteLocation(marker);
                     }}
@@ -116,7 +137,11 @@ function MapComponent(props) {
             );
           } else {
             return (
-              <Marker key={i} position={[marker.lat, marker.lng]}>
+              <Marker
+                key={i}
+                position={[marker.lat, marker.lng]}
+                icon={blackWaterIcon}
+              >
                 <Popup>{marker.description}</Popup>
               </Marker>
             );

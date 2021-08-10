@@ -22,10 +22,6 @@ export const customTheme = createTheme({
   },
 });
 
-const useStyles = makeStyles({
-  container: {},
-});
-
 function App() {
   return (
     <CssBaseline>

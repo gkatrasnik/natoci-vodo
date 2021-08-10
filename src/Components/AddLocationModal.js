@@ -92,7 +92,7 @@ export default function AddLocationModal(props) {
             Cancel
           </Button>
           <Button color="primary">Add Picture</Button>
-          <Button onClick={submitLocationHandler} color="primary">
+          <Button onClick={submitLocationHandler} color="primary" type="submit">
             Add Location
           </Button>
         </DialogActions>

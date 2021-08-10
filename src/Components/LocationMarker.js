@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useMap, Marker, Popup, Circle } from "react-leaflet";
-import L from "leaflet";
-import { Fab, makeStyles } from "@material-ui/core";
-import { LocationSearching, MyLocation } from "@material-ui/icons";
+
+import { Fab, makeStyles, Typography } from "@material-ui/core";
+import { MyLocation } from "@material-ui/icons";
 import "./../App.css";
 
 const useStyles = makeStyles({
@@ -66,13 +66,16 @@ function LocationMarker(props) {
         <MyLocation />
       </Fab>
       <Circle center={position} radius={accuracy} />
+
       <Marker
         draggable={true}
         eventHandlers={eventHandlers}
         position={position}
         ref={markerRef}
       >
-        <Popup>You are here</Popup>
+        <Popup>
+          <Typography>Your location</Typography>
+        </Popup>
       </Marker>
     </>
   );
