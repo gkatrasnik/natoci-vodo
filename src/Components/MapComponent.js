@@ -39,7 +39,7 @@ function MapComponent(props) {
         });
         setMarkersData(array);
       });
-  }; //test
+  };
 
   //add location to firestore
   const addLocation = (description) => {
