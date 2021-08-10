@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import AddLocationModal from "./AddLocationModal";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Button } from "@material-ui/core";
 import { firestore, timestamp } from "./Firebase";
 import LocationMarker from "./LocationMarker";
 import { useAuth } from "../contexts/AuthContext";
@@ -15,13 +15,17 @@ const useStyles = makeStyles({
 });
 
 function MapComponent(props) {
-  const { currentUser } = useAuth();
   const classes = useStyles();
+  const { currentUser } = useAuth();
   const [markersData, setMarkersData] = useState([]);
   const [globalPosition, setGlobalPosition] = useState([]);
 
   useEffect(() => {
     getMarkersData();
+    const unsubscribe = firestore // doesnt update markers instantly, need to refresh
+      .collection("vode")
+      .onSnapshot(() => getMarkersData());
+    return unsubscribe;
   }, []);
 
   //get markers from Firestore
@@ -40,22 +44,39 @@ function MapComponent(props) {
   //on app load download markers data from firestore
 
   const addLocation = (description) => {
-    firestore
-      .collection("vode")
-      .add({
-        lat: globalPosition[0],
-        lng: globalPosition[1],
-        description: description,
-        created: timestamp,
-        uid: currentUser.uid,
-      })
-      .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
+    let newLocationRef = firestore.collection("vode").doc();
+    let dataObject = {
+      lat: globalPosition[0],
+      lng: globalPosition[1],
+      description: description,
+      created: timestamp,
+      uid: currentUser.uid,
+      docid: newLocationRef.id,
+    };
+    newLocationRef
+      .set(dataObject)
+      .then(() => {
+        console.log("Document successfully written");
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
       });
     alert(`you successfully added Location \n${description}`);
+  };
+
+  //delete marker -------------------------------------------- doesnt work, need to get document id
+  const deleteLocation = (marker) => {
+    firestore
+      .collection("vode")
+      .doc(marker.docid)
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+    alert(`you deleted Location \n${marker.description}`);
   };
 
   const globalPositionHandler = (position) => {
@@ -75,11 +96,31 @@ function MapComponent(props) {
       <LocationMarker globalPositionHandler={globalPositionHandler} />
       {markersData &&
         markersData.map((marker, i) => {
-          return (
-            <Marker key={i} position={[marker.lat, marker.lng]}>
-              <Popup>{marker.description}</Popup>{" "}
-            </Marker>
-          );
+          if (currentUser.uid === marker.uid) {
+            return (
+              <Marker key={i} position={[marker.lat, marker.lng]}>
+                <Popup>
+                  {marker.description}
+                  <Button
+                    marker={marker}
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                      deleteLocation(marker);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </Popup>
+              </Marker>
+            );
+          } else {
+            return (
+              <Marker key={i} position={[marker.lat, marker.lng]}>
+                <Popup>{marker.description}</Popup>
+              </Marker>
+            );
+          }
         })}
       <AddLocationModal
         addLocation={addLocation}

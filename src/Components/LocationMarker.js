@@ -12,6 +12,9 @@ const useStyles = makeStyles({
     bottom: "200px",
     right: "8%",
   },
+  currentMarkerStyle: {
+    zIndex: "1500!important",
+  },
 });
 
 function LocationMarker(props) {
@@ -31,7 +34,7 @@ function LocationMarker(props) {
     map.locate({ enableHighAccuracy: true }).on("locationfound", function (e) {
       let radius = e.accuracy;
       const newPos = e.latlng;
-      map.flyTo(newPos, 16);
+      map.setView(newPos, 16);
       setAccuracy(radius);
       setPosition([newPos.lat, newPos.lng]);
       props.globalPositionHandler([newPos.lat, newPos.lng]);
