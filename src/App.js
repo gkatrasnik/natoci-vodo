@@ -3,6 +3,7 @@ import MapComponent from "./components/MapComponent";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import About from "./components/About";
 import ForgotPassword from "./components/ForgotPassword";
 import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -39,6 +40,7 @@ function App() {
 
                 <Route path="/pitna-voda/signup" component={Signup} />
                 <Route path="/pitna-voda/login" component={Login} />
+                <Route path="/pitna-voda/about" component={About} />
                 <Route
                   path="/pitna-voda/forgot-password"
                   component={ForgotPassword}
