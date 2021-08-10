@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import AddLocationModal from "./AddLocationModal";
@@ -21,6 +21,11 @@ function MapComponent(props) {
   const { currentUser } = useAuth();
   const [markersData, setMarkersData] = useState([]);
   const [globalPosition, setGlobalPosition] = useState([]);
+  const [map, setMap] = useState(null);
+
+  const closePopups = () => {
+    map.closePopup();
+  };
 
   useEffect(() => {
     getMarkersData();
@@ -102,6 +107,7 @@ function MapComponent(props) {
       className={classes.mapStyle}
       center={[46.056946, 14.505751]}
       zoom={16}
+      whenCreated={setMap}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -127,6 +133,7 @@ function MapComponent(props) {
                     color="primary"
                     startIcon={<Delete />}
                     onClick={() => {
+                      closePopups();
                       deleteLocation(marker);
                     }}
                   >

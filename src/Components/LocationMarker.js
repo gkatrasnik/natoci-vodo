@@ -34,7 +34,10 @@ function LocationMarker(props) {
     map.locate({ enableHighAccuracy: true }).on("locationfound", function (e) {
       let radius = e.accuracy;
       const newPos = e.latlng;
-      map.setView(newPos, 16);
+      map.setView(newPos, 16, {
+        animate: true,
+        duration: 1,
+      });
       setAccuracy(radius);
       setPosition([newPos.lat, newPos.lng]);
       props.globalPositionHandler([newPos.lat, newPos.lng]);
