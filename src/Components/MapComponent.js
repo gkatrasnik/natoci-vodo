@@ -22,27 +22,26 @@ function MapComponent(props) {
 
   useEffect(() => {
     getMarkersData();
-    const unsubscribe = firestore // doesnt update markers instantly, need to refresh
-      .collection("vode")
-      .onSnapshot(() => getMarkersData());
+    const unsubscribe = firestore.collection("vode").onSnapshot(getMarkersData);
     return unsubscribe;
   }, []);
 
   //get markers from Firestore
   const getMarkersData = async () => {
+    let array = [];
     firestore
       .collection("vode")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
-          setMarkersData((markersData) => [...markersData, doc.data()]);
+          array.push(doc.data());
         });
+        setMarkersData(array);
       });
   };
 
-  //on app load download markers data from firestore
-
+  //add location to firestore
   const addLocation = (description) => {
     let newLocationRef = firestore.collection("vode").doc();
     let dataObject = {
@@ -64,7 +63,7 @@ function MapComponent(props) {
     alert(`you successfully added Location \n${description}`);
   };
 
-  //delete marker -------------------------------------------- doesnt work, need to get document id
+  //delete marker from firestore
   const deleteLocation = (marker) => {
     firestore
       .collection("vode")
@@ -79,6 +78,7 @@ function MapComponent(props) {
     alert(`you deleted Location \n${marker.description}`);
   };
 
+  //handles current marker location
   const globalPositionHandler = (position) => {
     setGlobalPosition(position);
   };
