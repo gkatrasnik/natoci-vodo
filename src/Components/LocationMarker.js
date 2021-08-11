@@ -9,8 +9,8 @@ const useStyles = makeStyles({
   currentLocationStyle: {
     zIndex: 500,
     position: "absolute !important",
-    bottom: "200px",
-    right: "8%",
+    bottom: "180px",
+    right: "7px",
   },
   currentMarkerStyle: {
     zIndex: "1500!important",
@@ -65,7 +65,11 @@ function LocationMarker(props) {
 
   return position === null ? null : (
     <>
-      <Fab className={classes.currentLocationStyle} onClick={locate}>
+      <Fab
+        size="small"
+        className={classes.currentLocationStyle}
+        onClick={locate}
+      >
         <MyLocation />
       </Fab>
       <Circle center={position} radius={accuracy} />

@@ -41,7 +41,7 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar color="primary" position="static">
+      <AppBar color="primary" position="fixed">
         <Toolbar>
           <IconButton
             edge="start"

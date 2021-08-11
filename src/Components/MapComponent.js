@@ -1,5 +1,11 @@
 import { React, useState, useEffect, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  ZoomControl,
+} from "react-leaflet";
 import L from "leaflet";
 import AddLocationModal from "./AddLocationModal";
 import { makeStyles, Button, Typography } from "@material-ui/core";
@@ -107,8 +113,10 @@ function MapComponent(props) {
       className={classes.mapStyle}
       center={[46.056946, 14.505751]}
       zoom={16}
+      zoomControl={false}
       whenCreated={setMap}
     >
+      <ZoomControl position="bottomright" />
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
