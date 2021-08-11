@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     zIndex: 500,
     position: "absolute !important",
     bottom: "120px",
-    right: "7px",
+    right: "25px",
   },
 });
 
@@ -51,7 +51,6 @@ export default function AddLocationModal(props) {
   return (
     <>
       <Fab
-        size="small"
         className={classes.addLocationStyle}
         onClick={() => {
           handleClickOpen();
