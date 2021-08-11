@@ -23,11 +23,19 @@ export const customTheme = createTheme({
   },
 });
 
+const useStyles = makeStyles({
+  containerStyle: {
+    height: "100%",
+    width: "100%",
+  },
+});
+
 function App() {
+  const classes = useStyles();
   return (
     <CssBaseline>
       <ThemeProvider theme={customTheme}>
-        <Container disableGutters={true} className="container">
+        <Container disableGutters={true} className={classes.containerStyle}>
           <BrowserRouter>
             <AuthProvider>
               <Navbar />

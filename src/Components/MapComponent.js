@@ -11,7 +11,7 @@ import "./../App.css";
 
 const useStyles = makeStyles({
   mapStyle: {
-    height: "95vh",
+    height: "100%",
     width: "100%",
   },
 });
