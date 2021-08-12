@@ -43,7 +43,6 @@ function LocationMarker(props) {
         setAccuracy(radius);
         setPosition([newPos.lat, newPos.lng]);
         props.globalPositionHandler([newPos.lat, newPos.lng]);
-        console.log("located");
       })
       .on("locationerror", function (e) {
         alert(`${e.message}\nTurn on Location Services!`);

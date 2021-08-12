@@ -7,6 +7,8 @@ import { Delete } from "@material-ui/icons";
 import { firestore, timestamp } from "./Firebase";
 import LocationMarker from "./LocationMarker";
 import { useAuth } from "../contexts/AuthContext";
+import blueIcon from "../icons/drop-blue.png";
+import blackIcon from "../icons/drop-black.png";
 import "./../App.css";
 
 const useStyles = makeStyles({
@@ -23,6 +25,7 @@ function MapComponent(props) {
   const [globalPosition, setGlobalPosition] = useState([]);
   const [map, setMap] = useState(null);
 
+  //closes popup when deleting marker
   const closePopups = () => {
     map.closePopup();
   };
@@ -89,14 +92,14 @@ function MapComponent(props) {
   };
 
   let blueWaterIcon = L.icon({
-    iconUrl: process.env.PUBLIC_URL + "/icons/drop-blue.png",
+    iconUrl: blueIcon,
     iconSize: [30, 30], // size of the icon
     iconAnchor: [15, 20], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -20], // point from which the popup should open relative to the iconAnchor
   });
 
   let blackWaterIcon = L.icon({
-    iconUrl: process.env.PUBLIC_URL + "/icons/drop-black.png",
+    iconUrl: blackIcon,
     iconSize: [30, 30], // size of the icon
     iconAnchor: [15, 20], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -20], // point from which the popup should open relative to the iconAnchor

@@ -1,18 +1,8 @@
 import React from "react";
-import {
-  Typography,
-  makeStyles,
-  Grid,
-  Button,
-  Container,
-  CardMedia,
-  Box,
-} from "@material-ui/core";
-import { Card } from "@material-ui/core";
+import { Typography, makeStyles, Container, Box } from "@material-ui/core";
 import blueIcon from "../icons/drop-blue.png";
 import blackIcon from "../icons/drop-black.png";
 import currentLocationIcon from "../icons/current-location.png";
-import { Circle } from "react-leaflet";
 
 const useStyles = makeStyles((theme) => ({
   contentStyle: {
