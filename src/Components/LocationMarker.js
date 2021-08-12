@@ -31,21 +31,23 @@ function LocationMarker(props) {
   }, []);
 
   const locate = () => {
-    map.locate({ enableHighAccuracy: true }).on("locationfound", function (e) {
-      let radius = e.accuracy;
-      const newPos = e.latlng;
-      map.setView(newPos, 16, {
-        animate: true,
-        duration: 1,
+    map
+      .locate({ enableHighAccuracy: true })
+      .on("locationfound", function (e) {
+        let radius = e.accuracy;
+        const newPos = e.latlng;
+        map.setView(newPos, 16, {
+          animate: true,
+          duration: 1,
+        });
+        setAccuracy(radius);
+        setPosition([newPos.lat, newPos.lng]);
+        props.globalPositionHandler([newPos.lat, newPos.lng]);
+        console.log("located");
+      })
+      .on("locationerror", function (e) {
+        alert(`${e.message}\nTurn on Location Services!`);
       });
-      setAccuracy(radius);
-      setPosition([newPos.lat, newPos.lng]);
-      props.globalPositionHandler([newPos.lat, newPos.lng]);
-    });
-
-    map.locate().on("locationerror", function (e) {
-      alert(`${e.message}\nTurn on Location Services!`);
-    });
   };
 
   // on marker drag set component and global position
