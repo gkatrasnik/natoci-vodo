@@ -7,7 +7,7 @@ import Info from "./components/Info";
 import ForgotPassword from "./components/ForgotPassword";
 import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./contexts/AuthContext";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { CssBaseline, Container, makeStyles } from "@material-ui/core";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import "./App.css";
@@ -53,6 +53,7 @@ function App() {
                   path="/pitna-voda/forgot-password"
                   component={ForgotPassword}
                 />
+                <Redirect to="/pitna-voda" />
               </Switch>
             </AuthProvider>
           </BrowserRouter>
