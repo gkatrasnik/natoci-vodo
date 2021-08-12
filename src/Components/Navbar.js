@@ -6,9 +6,12 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 import { InvertColors } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,9 +20,7 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  title: {
-    flexGrow: 1,
-  },
+  toolbarStyle: {},
 }));
 
 export default function ButtonAppBar() {
@@ -27,6 +28,15 @@ export default function ButtonAppBar() {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
   const history = useHistory();
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   async function handleLogout() {
     setError("");
@@ -48,24 +58,50 @@ export default function ButtonAppBar() {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            onClick={handleClick}
           >
             <MenuIcon />
           </IconButton>
+
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                history.push("/pitna-voda");
+              }}
+            >
+              Map
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                history.push("/pitna-voda/info");
+              }}
+            >
+              Info
+            </MenuItem>
+            {currentUser && (
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  handleLogout();
+                }}
+              >
+                Logout
+              </MenuItem>
+            )}
+          </Menu>
           <InvertColors />
           {currentUser && (
             <Typography variant="body1" className={classes.title}>
               {currentUser.email}
             </Typography>
-          )}
-          {currentUser && (
-            <Button
-              variant="contained"
-              color="primary"
-              disableElevation
-              onClick={handleLogout}
-            >
-              Log Out
-            </Button>
           )}
         </Toolbar>
       </AppBar>
