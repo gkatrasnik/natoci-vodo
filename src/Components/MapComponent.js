@@ -31,7 +31,10 @@ function MapComponent(props) {
   };
 
   useEffect(() => {
+    //load markers on app start
     getMarkersData();
+
+    //listen to firestore changes and update markers
     const unsubscribe = firestore.collection("vode").onSnapshot(getMarkersData);
     return unsubscribe;
   }, []);
@@ -91,6 +94,7 @@ function MapComponent(props) {
     setGlobalPosition(position);
   };
 
+  //custom map icons
   let blueWaterIcon = L.icon({
     iconUrl: blueIcon,
     iconSize: [30, 30], // size of the icon

@@ -9,16 +9,21 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
-import { InvertColors } from "@material-ui/icons";
+import { Autorenew, InvertColors } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
+
+  toolbarStyle: {
+    display: "flex",
   },
-  toolbarStyle: {},
+  titleStyle: {
+    flexGrow: 1,
+    textAlign: "center",
+    marginRight: "48px",
+  },
 }));
 
 export default function ButtonAppBar() {
@@ -50,7 +55,7 @@ export default function ButtonAppBar() {
   return (
     <div className={classes.root}>
       <AppBar color="primary" position="fixed">
-        <Toolbar>
+        <Toolbar className={classes.toolbarStyle}>
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -60,7 +65,6 @@ export default function ButtonAppBar() {
           >
             <MenuIcon />
           </IconButton>
-
           <Menu
             id="simple-menu"
             anchorEl={anchorEl}
@@ -94,13 +98,12 @@ export default function ButtonAppBar() {
                 Logout
               </MenuItem>
             )}
+            {currentUser && <MenuItem disabled>{currentUser.email}</MenuItem>}
           </Menu>
-          <InvertColors />
-          {currentUser && (
-            <Typography variant="body1" className={classes.title}>
-              {currentUser.email}
-            </Typography>
-          )}
+
+          <Typography className={classes.titleStyle} variant="h4">
+            Natoči vodo
+          </Typography>
         </Toolbar>
       </AppBar>
     </div>
