@@ -100,7 +100,7 @@ export default function Login() {
               color="primary"
               type="submit"
             >
-              Login
+              Log in
             </Button>
           </form>
 
@@ -112,7 +112,7 @@ export default function Login() {
             </Grid>
             <Grid item>
               <Link to="/pitna-voda/signup" variant="body2">
-                Need an account? Sign Up
+                Need an account? Sign up
               </Link>
             </Grid>
           </Grid>

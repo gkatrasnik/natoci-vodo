@@ -58,7 +58,7 @@ export default function ForgotPassword() {
     <>
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
-          <h2>Password Reset</h2>
+          <h2>Password reset</h2>
           {error && <Alert variant="error">{error}</Alert>}
           {message && <Alert variant="success">{message}</Alert>}
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
@@ -80,19 +80,19 @@ export default function ForgotPassword() {
               color="primary"
               type="submit"
             >
-              Reset Password
+              Reset password
             </Button>
           </form>
 
           <Grid container>
             <Grid item xs>
               <Link to="/login" variant="body2">
-                Log In
+                Log in
               </Link>
             </Grid>
             <Grid item>
               <Link to="/pitna-voda/signup" variant="body2">
-                Need an account? Sign Up
+                Need an account? Sign up
               </Link>
             </Grid>
           </Grid>

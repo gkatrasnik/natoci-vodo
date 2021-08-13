@@ -111,14 +111,14 @@ export default function Signup() {
               color="primary"
               type="submit"
             >
-              Sign Up
+              Sign up
             </Button>
           </form>
 
           <Grid container>
             <Grid item>
               <Link to="/pitna-voda/login" variant="body2">
-                Have an account? Log In
+                Have an account? Log in
               </Link>
             </Grid>
           </Grid>
