@@ -15,7 +15,7 @@ import "./App.css";
 export const customTheme = createTheme({
   palette: {
     primary: {
-      main: "#2196f3", //blue
+      main: "#3987b8", //blue
     },
     secondary: {
       main: "#ffc400", //amber
