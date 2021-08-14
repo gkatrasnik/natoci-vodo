@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, makeStyles, Container, Box } from "@material-ui/core";
 import blueIcon from "../icons/drop-blue.png";
-import blackIcon from "../icons/drop-black.png";
+import greenIcon from "../icons/drop-green.png";
 import currentLocationIcon from "../icons/current-location.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -27,9 +27,7 @@ function Info() {
       <Typography variant="h6" gutterBottom>
         Make sure you have enabled location services before use.
       </Typography>
-      <Typography variant="h5" color="textSecondary" paragraph>
-        Map Legend:
-      </Typography>
+
       <div className={classes.heroButtons}>
         <Box display="flex" alignItems="center" mt={3}>
           <img
@@ -65,10 +63,27 @@ function Info() {
           </Box>
         </Box>
         <Box display="flex" alignItems="center" mt={3}>
-          <img src={blackIcon} width="40" height="40" alt="blue-icon" />
+          <img src={greenIcon} width="40" height="40" alt="blue-icon" />
           <Box ml={3}>
             <Typography>Locations others added</Typography>
           </Box>
+        </Box>
+        <Box mt={3}>
+          Icons made by{" "}
+          <a href="https://www.freepik.com" title="Freepik">
+            Freepik
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://www.flaticon.com/authors/smartline"
+            title="Smartline"
+          >
+            Smartline
+          </a>{" "}
+          from{" "}
+          <a href="https://www.flaticon.com/" title="Flaticon">
+            www.flaticon.com
+          </a>
         </Box>
       </div>
     </Container>

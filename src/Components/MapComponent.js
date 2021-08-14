@@ -8,7 +8,7 @@ import { firestore, timestamp } from "./Firebase";
 import LocationMarker from "./LocationMarker";
 import { useAuth } from "../contexts/AuthContext";
 import blueIcon from "../icons/drop-blue.png";
-import blackIcon from "../icons/drop-black.png";
+import greenIcon from "../icons/drop-green.png";
 import "./../App.css";
 
 const useStyles = makeStyles({
@@ -102,8 +102,8 @@ function MapComponent(props) {
     popupAnchor: [0, -20], // point from which the popup should open relative to the iconAnchor
   });
 
-  let blackWaterIcon = L.icon({
-    iconUrl: blackIcon,
+  let greenWaterIcon = L.icon({
+    iconUrl: greenIcon,
     iconSize: [30, 30], // size of the icon
     iconAnchor: [15, 20], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -20], // point from which the popup should open relative to the iconAnchor
@@ -155,7 +155,7 @@ function MapComponent(props) {
               <Marker
                 key={i}
                 position={[marker.lat, marker.lng]}
-                icon={blackWaterIcon}
+                icon={greenWaterIcon}
               >
                 <Popup>{marker.description}</Popup>
               </Marker>

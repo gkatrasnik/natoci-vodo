@@ -90,9 +90,6 @@ export default function AddLocationModal(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-
-          <Button color="primary">Add Picture</Button>
-
           <Button onClick={submitLocationHandler} color="primary" type="submit">
             Add Location
           </Button>
