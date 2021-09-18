@@ -1,5 +1,7 @@
 # Getting Started with Create React App
-Interactive map app.
+
+Interactive map app
+
 Tools used:
 - ReactJS
 - React Router
@@ -7,6 +9,8 @@ Tools used:
 - Firebase Authentication
 - Material UI
 - React Leaflet 
+- GH Pages
+- Workbox PWA
 
 
 # Getting Started with Create React App
