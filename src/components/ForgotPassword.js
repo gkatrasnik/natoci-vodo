@@ -91,7 +91,7 @@ export default function ForgotPassword() {
               </Link>
             </Grid>
             <Grid item>
-              <Link to="/pitna-voda/signup" variant="body2">
+              <Link to="/signup" variant="body2">
                 Need an account? Sign up
               </Link>
             </Grid>

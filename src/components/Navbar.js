@@ -45,7 +45,7 @@ export default function ButtonAppBar() {
 
     try {
       await logout();
-      history.push("/pitna-voda/login");
+      history.push("/login");
     } catch {
       setError("Failed to log out");
     }
@@ -74,7 +74,7 @@ export default function ButtonAppBar() {
             <MenuItem
               onClick={() => {
                 handleClose();
-                history.push("/pitna-voda");
+                history.push("/");
               }}
             >
               Map
@@ -82,7 +82,7 @@ export default function ButtonAppBar() {
             <MenuItem
               onClick={() => {
                 handleClose();
-                history.push("/pitna-voda/info");
+                history.push("/info");
               }}
             >
               Info

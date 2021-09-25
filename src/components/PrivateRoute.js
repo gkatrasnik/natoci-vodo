@@ -12,7 +12,7 @@ export default function PrivateRoute({ component: Component, ...rest }) {
         return currentUser ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/pitna-voda/login" />
+          <Redirect to="/login" />
         );
       }}
     ></Route>

@@ -51,7 +51,7 @@ export default function Signup() {
       setError("");
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
-      history.push("/pitna-voda");
+      history.push("/");
     } catch {
       setError("Failed to create an account");
     }
@@ -117,7 +117,7 @@ export default function Signup() {
 
           <Grid container>
             <Grid item>
-              <Link to="/pitna-voda/login" variant="body2">
+              <Link to="/login" variant="body2">
                 Have an account? Log in
               </Link>
             </Grid>
