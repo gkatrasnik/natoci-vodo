@@ -33,7 +33,6 @@ function MapComponent(props) {
   useEffect(() => {
     //load markers on app start
     getMarkersData();
-    console.log(markersData);
 
     //listen to firestore changes and update markers
     const unsubscribe = firestore.collection("vode").onSnapshot(getMarkersData);
