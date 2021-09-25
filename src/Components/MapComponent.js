@@ -33,6 +33,7 @@ function MapComponent(props) {
   useEffect(() => {
     //load markers on app start
     getMarkersData();
+    console.log(markersData);
 
     //listen to firestore changes and update markers
     const unsubscribe = firestore.collection("vode").onSnapshot(getMarkersData);
@@ -121,6 +122,7 @@ function MapComponent(props) {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+
       <LocationMarker globalPositionHandler={globalPositionHandler} />
       {markersData &&
         markersData.map((marker, i) => {

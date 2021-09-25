@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useMap, Marker, Popup, Circle } from "react-leaflet";
-
-import { Fab, makeStyles, Typography } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
+import { Fab, makeStyles, Typography, Button } from "@material-ui/core";
 import { MyLocation } from "@material-ui/icons";
 import "./../App.css";
 
@@ -15,12 +15,24 @@ const useStyles = makeStyles({
   currentMarkerStyle: {
     zIndex: "1500!important",
   },
+  locationAlert: {
+    width: "90%",
+    justifyContent: "center",
+    zIndex: 500,
+    position: "absolute !important",
+    top: "64px",
+    left: "5%",
+  },
+  refreshButton: {
+    marginTop: "10px",
+  },
 });
 
 function LocationMarker(props) {
   const classes = useStyles();
   const [position, setPosition] = useState(null);
   const [accuracy, setAccuracy] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const map = useMap();
   const markerRef = useRef(null);
@@ -43,9 +55,12 @@ function LocationMarker(props) {
         setAccuracy(radius);
         setPosition([newPos.lat, newPos.lng]);
         props.globalPositionHandler([newPos.lat, newPos.lng]);
+        setErrorMessage(null);
       })
       .on("locationerror", function (e) {
-        alert(`${e.message}\nTurn on Location Services!`);
+        setErrorMessage(
+          `${e.message}\nTurn on and Allow Location Services, then restart the App!`
+        );
       });
   };
 
@@ -64,7 +79,18 @@ function LocationMarker(props) {
     []
   );
 
-  return position === null ? null : (
+  return position === null ? (
+    <Alert className={classes.locationAlert} severity="error" variant="filled">
+      <Typography>{errorMessage}</Typography>
+      <Button
+        variant="contained"
+        className={classes.refreshButton}
+        onClick={locate}
+      >
+        Refresh
+      </Button>
+    </Alert>
+  ) : (
     <>
       <Fab className={classes.currentLocationStyle} onClick={locate}>
         <MyLocation />
