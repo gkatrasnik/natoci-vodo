@@ -9,7 +9,6 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
-import { Autorenew, InvertColors } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
