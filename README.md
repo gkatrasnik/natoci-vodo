@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Natoči vodo
 
 https://natoci-vodo.netlify.app \
 Interactive map app
