@@ -11,8 +11,8 @@ Tools used:
 - Firebase Authentication
 - Material UI
 - React Leaflet 
-- GH Pages
 - Workbox PWA
+- Netlify
 
 
 User must sign up to use the app.\
