@@ -3,7 +3,7 @@ import "firebase/firestore";
 import "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAXDAtL_5l00CZXKOXDP6FCx7rgcdiy1Lc",
+  apiKey: process.env.API_KEY,
   authDomain: "pitna-voda-42a68.firebaseapp.com",
   projectId: "pitna-voda-42a68",
   storageBucket: "pitna-voda-42a68.appspot.com",
