@@ -2,7 +2,7 @@
 
 https://natoci-vodo.netlify.app \
 Personal project \
-Interactive map app
+Responsive interactive map app - PWA
 
 Tools used:
 - ReactJS
