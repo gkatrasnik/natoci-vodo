@@ -4,6 +4,8 @@ https://natoci-vodo.netlify.app \
 Personal project \
 Responsive interactive map app - PWA
 
+DEMO USER: username:test@email.com, password: test123
+
 Tools used:
 - ReactJS
 - React Router
